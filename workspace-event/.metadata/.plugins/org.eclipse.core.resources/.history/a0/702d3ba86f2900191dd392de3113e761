@@ -1,0 +1,56 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+pageEncoding="ISO-8859-1"%>
+<%@ page language="java" import="java.net.URLDecoder"%>
+
+<html>
+<head>
+<title>Event Tracker</title>
+<link rel="stylesheet" href="css/app.css"></link>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div class="col-md-12">
+ <h1>All Events <input type="button" value="Add new event" name="Add new event" onclick="openPage('addEvent.jsp')" /></h1>
+	<!-- <form action="/events" method="get">
+		<br>Season: <input type="text" name="season" value="${URLDecoder.decode(web)}"> <input
+			type="submit" value="Filter by season" />
+	</form>
+	<br> 
+	<form action="/" method="post">
+		Id:<input type="text" name="id" class=" .col-lg-*"/><br> Caption:<input
+			type="text" name="caption" /><br> League:<input type="text"
+			name="league" /><br> Year:<input type="text" name="year" /><br>
+		Number of teams:<input type="text" name="numberOfTeams" /><br>
+		Number of games:<input type="text" name="numberOfGames" /><br>
+		Last updated:<input type="text" name="lastUpdated" /><br> <input
+			type="submit" value="Add competition" name="Add competition"
+		 />
+	</form>
+!-->
+	<table  class="table col-md-8" style="background-color : #B4CDCD; height: 50px; overflow: auto; overflow-y:scroll" >
+		<thead>
+			<tr>
+				<th scope="row">Id</th>
+				<th scope="row">EventId</th>
+				<th scope="row">Event Type</th>
+				<th scope="row">Name</th>
+				<th scope="row">Description</th>
+				<th scope="row">Url</th>
+			</tr>
+
+			<c:forEach var="i" items="${list}">
+				<tr>
+					<td><c:out value="${i.id }" /></td>
+					<td><c:out value="${i.eventId}" /></td>
+					<td><c:out value="${i.event_type}" /></td>
+					<td><c:out value="${i.event_name}" /></td>
+					<td><c:out value="${i.description}" /></td>
+					<td><c:out value="${i.url}" /></td>
+				</tr>
+			</c:forEach>
+	</table>
+	</div>
+</body>
+</html>

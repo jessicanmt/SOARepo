@@ -1,0 +1,33 @@
+package event;
+
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+
+import service.EventAppService;
+import model.EventDTO;
+
+@Controller
+public class EventAppController {
+
+
+		private EventAppService service = new EventAppService();
+
+		@RequestMapping("/events")
+		public String getEvents(Model model) {
+			List <EventDTO> events = service.getAllCompetitions();
+			model.addAttribute("list", events);
+			return "welcome";			
+		}
+		
+		@RequestMapping("/addEvent")
+		public String openAddEvent(Model model) {
+		//	List <EventDTO> events = service.getAllCompetitions();
+	 //		model.addAttribute("list", events);
+			return "addEvent";			
+		}
+
+}

@@ -1,0 +1,19 @@
+package service;
+
+import java.util.List;
+
+import org.springframework.web.client.RestTemplate;
+
+import model.EventDTO;
+
+
+public class EventAppService {
+	private static final String URL="http://localhost:8080/competitions";
+	private RestTemplate rest = new RestTemplate();
+	
+	public List<EventDTO>getAllCompetitions(){
+       return rest.getForObject(URL, List.class);
+	}
+	
+
+}

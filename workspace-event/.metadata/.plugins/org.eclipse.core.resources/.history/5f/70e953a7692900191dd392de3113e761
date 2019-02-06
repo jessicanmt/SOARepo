@@ -1,0 +1,62 @@
+package server;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import server.EventMapper;
+import model.EventDTO;
+
+public class EventServer {
+
+	private static final String URL = "https://api.trade.gov/v1/trade_events/search?api_key=_EIDtOzmIJZnFV0LzoLbYkZi";
+	private static final String RESULT = "results";
+	//  private static final String AUTH_HEADER = "X-Auth-Token";
+	//  private static final String AUTHENTICATION_KEY = "6276db5512f04f8ca6dc0976681361e1";
+
+	    @Autowired
+		private EventMapper mapper = new EventMapper();
+		
+		/**
+		 * Get list of all competitions from the server
+		 * 
+		 * @return the retrieved list of events
+		 * @throws ParseException
+		 * @throws IOException
+		 * @throws JSONException 
+		 */
+		public List<EventDTO> getAllEventsFromApplicationServer() throws IOException, JSONException {
+			List<EventDTO> events = new ArrayList<EventDTO>();
+
+			URL url = new URL(URL);
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+			InputStream is = conn.getInputStream();
+			BufferedReader br = new BufferedReader(new InputStreamReader(is));
+					
+					
+			String line = null;
+
+			while ((line = br.readLine()) != null) {
+				JSONObject event = new JSONObject(line);
+				JSONArray data = event.optJSONArray(RESULT);
+				
+				for (int i = 0; i < data.length(); i++) {
+					JSONObject jsonObj = data.getJSONObject(i);
+					EventDTO c = mapper.convertFromJSONObject(jsonObj);
+					events.add(c);
+				}
+			}
+
+			return events;
+		}
+}

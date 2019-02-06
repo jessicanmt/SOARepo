@@ -1,0 +1,17 @@
+package event;
+
+import java.util.HashMap;
+
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.annotation.ComponentScan;
+
+@SpringBootApplication
+@ComponentScan("com.in28minutes.springboot.web")
+public class EventAppApplication {
+    public static void main(String[] args) throws Exception {
+    	HashMap<String, Object> props = new HashMap<String, Object>();
+    	props.put("server.port", 9999);
+    	new SpringApplicationBuilder().sources(EventAppApplication.class).properties(props).run(args);
+    }
+}

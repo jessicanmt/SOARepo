@@ -1,0 +1,29 @@
+package event;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import service.EventAppService;
+import model.EventDTO;
+
+@Controller
+public class EventAppController {
+
+
+		private EventAppService service = new EventAppService();
+
+		@RequestMapping("/")
+		public String getEvents() {
+				System.out.println("here");
+ return "merge";			
+			
+		}
+
+}

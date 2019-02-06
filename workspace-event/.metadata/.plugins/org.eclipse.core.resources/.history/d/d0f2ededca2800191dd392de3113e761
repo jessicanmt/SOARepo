@@ -1,0 +1,45 @@
+package server;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import model.EventDTO;
+
+/**
+ * Mapper class for converting from json data 
+ 
+ */
+public class EventMapper {
+	
+	private static final String RESULT = "result";
+	private static final String ID = "id";
+	private static final String EVENT_ID = "event_id";
+	private static final String EVENT_NAME = "event_name";
+	private static final String DESCRIPTION = "description";
+	private static final String EVENT_TYPE = "event_type";
+	private static final String URL = "url";
+
+	/**
+	 * Convert from json object to competition object
+	 * @param object the json
+	 * @return the competition object
+	 */
+	public EventDTO convertFromJSONObjectToCompetitionObject(JSONArray object) {
+		EventDTO event = null;
+
+//		
+//		if (null != object) {
+//			int id = object.getInt(ID);
+//			String caption = object.getString(CAPTION);
+//			String league = object.getString(LEAGUE);
+//			String year = object.getString(YEAR);
+//			int numberOfTeams = object.getInt(NUMBEROFTEAMS);
+//			int numberOfGames = object.getInt(NUMBEROFGAMES);
+//			String lastUpdated = object.getString(LASTUPDATED);
+//
+//			c = new Competition(id, caption, league, year, numberOfTeams, numberOfGames, lastUpdated);
+//		}
+
+		return event;
+	}
+
+}

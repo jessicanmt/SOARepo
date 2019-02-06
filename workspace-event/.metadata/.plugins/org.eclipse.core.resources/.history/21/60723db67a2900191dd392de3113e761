@@ -1,0 +1,70 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+form {border: 3px solid #f1f1f1;}
+
+input {
+  width: 70%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #B4CDCD;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 70%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.container {
+  padding: 16px;
+}
+
+</style>
+</head>
+<body>
+
+<h2>Add new event</h2>
+
+<form action="/saveEvent" method="post">
+ 
+  <div class="container">
+    <label for="id"><b>Id</b></label>
+    <input type="text" id="id" name="id" >
+ 	<label for="ev"><b>Event Id </b></label>
+    <input type="text" id="ev" name="ev" >
+     <label for="evname"><b>Event name: </b></label>
+    <input type="text" id="evname" name="evname" >
+     <label for="evtype"><b>Event type</b></label>
+    <input type="text" id="evtype" name="evtype" >
+     <label for="desc"><b>Description</b></label>
+    <input type="text" id="desc" name="desc" >
+    <label for="url"><b>URL</b></label>
+    <input type="text" id="url" name="url" >
+    
+        
+    <button type="submit">Add event</button>
+  </div>
+
+  <div class="container">
+    <button type="button">Cancel</button>
+  </div>
+</form>
+
+</body>
+</html>

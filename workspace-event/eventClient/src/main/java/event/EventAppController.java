@@ -1,0 +1,48 @@
+package event;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import service.EventAppService;
+import model.EventDTO;
+
+@Controller
+public class EventAppController {
+
+
+		private EventAppService service = new EventAppService();
+
+		private List <EventDTO> events = new ArrayList<EventDTO>();
+		
+		@RequestMapping("/events")
+		public String getEvents(Model model) {
+			 events = service.getAllEvents();
+			model.addAttribute("list", events);
+			return "welcome";			
+		}
+		
+		@RequestMapping("/addEvent")
+		public String openAddEvent(Model model) {
+			return "addEvent";			
+		}
+
+		@RequestMapping(value="/saveEvent", method = RequestMethod.POST)
+		public String saveEvent(Model model,@RequestParam("id") String id, @RequestParam("ev") int evId ,@RequestParam("evname") String name, @RequestParam("evtype") String type, @RequestParam("desc") String description, @RequestParam("url") String url) {
+			EventDTO event = new EventDTO();
+			event.setId(id);
+			event.setEventId(evId);
+			event.setEvent_name(name);
+			event.setEvent_type(type);
+			event.setDescription(description);
+			event.setUrl(url);
+			events.add(event);
+			model.addAttribute("list", events);
+			return "welcome";			
+		}
+}
